@@ -8,7 +8,6 @@ This documentation serves as a permanent reference architecture for attacking po
 * **Target Operating System:** Linux (Ubuntu)
 * **Application Frame:** Apache HTTP Server & Apache Tomcat Container
 * **Network Protocol Connector:** Apache-Coyote/1.1
-* **Objective:** Secure an interactive terminal and read the system root flag (`/root/flag.txt`)
 
 ---
 
