@@ -27,20 +27,20 @@ Audited the primary web port to discover internal documents, configurations, or 
   * `/protected/` — A locked asset throwing an `HTTP Status: 401 Unauthorized` block, strictly requiring browser-native authentication parameters.
 
 ### 3. Identity Cracking (HTTP Basic Authentication)
-Targeted the explicit `/protected/` URI using the extracted identity profile to reverse-engineer access parameters.
+Targeted the explicit `/protected/` URI using the extracted identity profile to reverse engineer access parameters.
 * **Core Action:** Executed high thread authentication attempts passing the leaked username against a standard alphanumeric wordlist.
 * **Result:** Successfully cracked Bob's network credential mapping: **`bob:bubbles`**.
 
-### 4. Cross-Service Pivot (Tomcat Auditing)
+### 4. Cross Service Pivot (Tomcat Auditing)
 Tested the recovered credential set against the administrative management interfaces of Apache Tomcat located on the secondary high port allocation.
-* **Core Action:** Validated credential reuse vulnerabilities. Bob re-used his entry token on the primary web tier and the core application cluster dashboard.
+* **Core Action:** Validated credential reuse vulnerabilities. Bob reused his entry token on the primary web tier and the core application cluster dashboard.
 * **Technical Footprint:** Executed precise application layer headers to verify that the active server routing was handled by **`Apache-Coyote/1.1`**, while finding **`5` separate misconfigured default documentation artifacts** left active inside the target root directory.
 
 ### 5. Weaponization & Exploit Modification
 Initial deployment automation attempts utilizing standard framework modules failed with an explicit `HTTP 403 Forbidden` error because Bob's profile was restricted from interacting with the programmatic script deployment API endpoint (`/manager/text`).
 * **The Strategic Engineering Correction:** Shifted to an interactive web interface injection payload module (`tomcat_mgr_upload`).
-* **The Mechanics:** The attack module initiated a stateful session facsimile, handled the initial authentication sequence, dynamically parsed the server's backend parameters to extract a valid, time-sensitive **CSRF (Cross-Site Request Forgery) Token**, and executed a multi-part HTML upload payload container.
-* **Payload Archetype:** Injected a Java Web Archive (`.war`) container encapsulating a Java-based reverse TCP stager. The host successfully deployed and unpacked the container, initializing an interactive **Meterpreter session** back to the active listening terminal.
+* **The Mechanics:** The attack module initiated a stateful session facsimile, handled the initial authentication sequence, dynamically parsed the server's backend parameters to extract a valid, time sensitive **CSRF (Cross-Site Request Forgery) Token**, and executed a multi-part HTML upload payload container.
+* **Payload Archetype:** Injected a Java Web Archive (`.war`) container encapsulating a Java based reverse TCP stager. The host successfully deployed and unpacked the container, initializing an interactive **Meterpreter session** back to the active listening terminal.
 
 ### 6. Interactive Post-Exploitation & Data Triage
 Dropped from the interactive framework stager directly into a native system shell to inspect current process ownership and complete the target directive.
