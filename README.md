@@ -16,7 +16,7 @@ This documentation serves as a permanent reference architecture for attacking po
 
 ### 1. Perimeter Enumeration (Reconnaissance)
 Mapped the host interfaces using network-layer discovery to identify active service endpoints.
-* **Core Action:** Validated distinct daemon layouts running on standard and high-port allocations.
+* **Core Action:** Validated distinct daemon layouts running on standard and high port allocations.
 * **Findings:** Identified standard Apache HTTP infrastructure alongside an isolated Apache Tomcat deployment.
 
 ### 2. Directory Brute-Forcing (Content Discovery)
