@@ -1,4 +1,4 @@
-# 🛠️ TryHackMe: ToolsRUs — Full Architectural & Deep-Dive Analysis
+# 🛠️ TryHackMe: ToolsRUs — Full Architectural & Deep Dive Analysis
 
 This documentation serves as a permanent reference architecture for attacking poorly managed Apache Tomcat assets without causing service disruption.
 
@@ -15,7 +15,7 @@ This documentation serves as a permanent reference architecture for attacking po
 
 
 ### 1. Perimeter Enumeration (Reconnaissance)
-Mapped the host interfaces using network-layer discovery to identify active service endpoints.
+Mapped the host interfaces using network layer discovery to identify active service endpoints.
 * **Core Action:** Validated distinct daemon layouts running on standard and high port allocations.
 * **Findings:** Identified standard Apache HTTP infrastructure alongside an isolated Apache Tomcat deployment.
 
@@ -28,11 +28,11 @@ Audited the primary web port to discover internal documents, configurations, or 
 
 ### 3. Identity Cracking (HTTP Basic Authentication)
 Targeted the explicit `/protected/` URI using the extracted identity profile to reverse-engineer access parameters.
-* **Core Action:** Executed high-thread authentication attempts passing the leaked username against a standard alphanumeric wordlist.
+* **Core Action:** Executed high thread authentication attempts passing the leaked username against a standard alphanumeric wordlist.
 * **Result:** Successfully cracked Bob's network credential mapping: **`bob:bubbles`**.
 
 ### 4. Cross-Service Pivot (Tomcat Auditing)
-Tested the recovered credential set against the administrative management interfaces of Apache Tomcat located on the secondary high-port allocation.
+Tested the recovered credential set against the administrative management interfaces of Apache Tomcat located on the secondary high port allocation.
 * **Core Action:** Validated credential reuse vulnerabilities. Bob re-used his entry token on the primary web tier and the core application cluster dashboard.
 * **Technical Footprint:** Executed precise application layer headers to verify that the active server routing was handled by **`Apache-Coyote/1.1`**, while finding **`5` separate misconfigured default documentation artifacts** left active inside the target root directory.
 
@@ -44,7 +44,7 @@ Initial deployment automation attempts utilizing standard framework modules fail
 
 ### 6. Interactive Post-Exploitation & Data Triage
 Dropped from the interactive framework stager directly into a native system shell to inspect current process ownership and complete the target directive.
-* **Operational Privileges:** Running `whoami` immediately answered **`root`** without any additional host-level privilege escalation required.
+* **Operational Privileges:** Running `whoami` immediately answered **`root`** without any additional hostlevel privilege escalation required.
 * **Data Exfiltration:** Navigated directly to the primary root volume space and unpacked the protected flag file via absolute path indexing:
   ```bash
   cat /root/flag.txt
